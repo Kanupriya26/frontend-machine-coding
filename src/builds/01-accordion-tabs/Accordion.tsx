@@ -1,38 +1,47 @@
 import { useState } from "react";
 import "./accordion.css"
 
-interface AccordionItemProp {
+interface BasicItemProp {
   id: string;
   title: string;
   content: string;
 }
 
-const AccordionItem = ({id, title, content}: AccordionItemProp) => {
-  const [showContent, setShowContent] = useState<boolean>(false)
-  const [isOpen, setIsOpen] = useState<boolean>(false)
-  
+interface AccordionItemProp extends BasicItemProp{
+  onToggle: (id: string) => void;
+  isOpen: boolean;
+}
+
+const AccordionItem = ({id, title, content, onToggle, isOpen}: AccordionItemProp) => {
+
   const  handleDropdown = ()=> {
-    setIsOpen(prev => !prev)
-    setShowContent(prev => !prev)
+    onToggle(id)
   }
+
   return (
     <div id={id} className="item-parent">
       <button className="clickable-part" onClick={handleDropdown}>
         {title}
         <span className={isOpen? "" : "transformed"}>^</span>
       </button>
-      {showContent && <p>{content}</p>}
+      {isOpen && <p>{content}</p>}
     </div>
   )
 }
 
-type AccordionProps = {itemContent: AccordionItemProp[]}
+type AccordionProps = {itemContent: BasicItemProp[], allowMultiple: boolean}
 
-const Accordion = ({itemContent}: AccordionProps) => {
-  console.log(itemContent)
+const Accordion = ({itemContent, allowMultiple}: AccordionProps) => {
+  console.log(itemContent, allowMultiple)
+  const [openID, setOpenID] = useState<string | null>(null)
+
+  const toggleItem = (itemID: string)=>{
+    setOpenID(prev => prev === itemID? null : itemID)
+  }
+
   return (
     <div className="accordion-parent">
-      {itemContent.map((item: AccordionItemProp) =>  <AccordionItem id={item.id} title={item.title} content={item.content}/>)}
+      {itemContent.map((item: BasicItemProp) => <AccordionItem key={item.id} {...item} onToggle={toggleItem} isOpen={item.id === openID}/>)}
     </div>
   )
 }
