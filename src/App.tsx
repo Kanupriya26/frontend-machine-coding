@@ -1,4 +1,4 @@
-import Accordion from './builds/01-accordion-tabs/AccordionEffectSync'
+import Accordion from './builds/01-accordion-tabs/Accordion'
 
 function App() {
   const details = [
@@ -7,7 +7,7 @@ function App() {
     {id: "travel-03", title: "Can I travel to foreign?", content: "You absolutely can. We as a company would be happy to take you to international waters."}
   ]
 
-  return <Accordion items={details}/>
+  return <Accordion items={details} allowMultiple/>
 }
 
 export default App

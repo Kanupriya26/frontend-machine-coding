@@ -1,26 +1,23 @@
-import { useState } from "react";
+import {useState} from "react"
 import "./Accordion.css"
 
-interface BasicItemProp {
+interface AccordionItemData{
   id: string;
   title: string;
   content: string;
 }
 
-interface AccordionItemProp extends BasicItemProp{
-  onToggle: (id: string) => void;
+interface AccordionItemProps extends AccordionItemData{
+  onItemClick: (id: string) => void;
   isOpen: boolean;
 }
 
-const AccordionItem = ({id, title, content, onToggle, isOpen}: AccordionItemProp) => {
+const AccordionItem = ({id, title, content, isOpen, onItemClick}: AccordionItemProps) => {
+  const handleItemClick = () => onItemClick(id);
 
-  const  handleDropdown = ()=> {
-    onToggle(id)
-  }
-
-  return (
+  return(
     <div id={id} className="item-parent">
-      <button className="clickable-part" onClick={handleDropdown}>
+      <button className="clickable-part" onClick={handleItemClick}>
         {title}
         <span className={isOpen? "" : "transformed"}>^</span>
       </button>
@@ -29,19 +26,24 @@ const AccordionItem = ({id, title, content, onToggle, isOpen}: AccordionItemProp
   )
 }
 
-type AccordionProps = {itemContent: BasicItemProp[], allowMultiple: boolean}
+const Accordion = ({items, allowMultiple}: {items: AccordionItemData[], allowMultiple: boolean}) => {
+  const [openIds, setOpenIds] = useState<string[]>([])
 
-const Accordion = ({itemContent, allowMultiple}: AccordionProps) => {
-  console.log(itemContent, allowMultiple)
-  const [openID, setOpenID] = useState<string | null>(null)
+  const toggleItem = (itemId: string) => {
+    setOpenIds(prevIds => {
+      const alreadyOpen = prevIds.includes(itemId);
 
-  const toggleItem = (itemID: string)=>{
-    setOpenID(prev => prev === itemID? null : itemID)
+      if(alreadyOpen) return prevIds.filter(id => id !== itemId);
+      return allowMultiple? [...prevIds, itemId] : [itemId];
+    })
   }
 
   return (
     <div className="accordion-parent">
-      {itemContent.map((item: BasicItemProp) => <AccordionItem key={item.id} {...item} onToggle={toggleItem} isOpen={item.id === openID}/>)}
+      {items.map((item: AccordionItemData) => {
+        const isItemOpen = openIds.includes(item.id)
+        return <AccordionItem key={item.id} {...item} isOpen={isItemOpen} onItemClick={toggleItem}/>
+      })}
     </div>
   )
 }
