@@ -10,14 +10,15 @@ interface AccordionItemData{
 interface AccordionItemProps extends AccordionItemData{
   onItemClick: (id: string) => void;
   isOpen: boolean;
+  allowMultiple: boolean;
 }
 
-const AccordionItem = ({id, title, content, isOpen, onItemClick}: AccordionItemProps) => {
+const AccordionItem = ({id, title, content, isOpen, allowMultiple, onItemClick}: AccordionItemProps) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false)
 
   useEffect(() => {
-    if(!isOpen) setIsExpanded(false)
-  }, [isOpen])
+    if(!allowMultiple && !isOpen) setIsExpanded(false)
+  }, [isOpen, allowMultiple])
 
   const handleItemClick = () => {
     setIsExpanded(prev => !prev);
@@ -35,14 +36,14 @@ const AccordionItem = ({id, title, content, isOpen, onItemClick}: AccordionItemP
   )
 }
 
-const Accordion = ({items}: {items: AccordionItemData[]}) => {
+const Accordion = ({items, allowMultiple}: {items: AccordionItemData[], allowMultiple: boolean}) => {
   const [lastOpenedID, setLastOpenedID] = useState<string | null>(null)
 
   const toggleItem = (id: string) => setLastOpenedID(prev => prev === id? null : id)
 
   return (
     <div className="accordion-parent">
-      {items.map((item: AccordionItemData) => <AccordionItem key={item.id} {...item} isOpen={item.id === lastOpenedID} onItemClick={toggleItem}/>)}
+      {items.map((item: AccordionItemData) => <AccordionItem key={item.id} {...item} isOpen={item.id === lastOpenedID} allowMultiple={allowMultiple} onItemClick={toggleItem}/>)}
     </div>
   )
 }
