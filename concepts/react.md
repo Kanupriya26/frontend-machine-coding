@@ -1,3 +1,11 @@
+# REACT: A library whose job is to build and update user interfaces(UIs) efficiently.
+(It keeps the screen in sync with application data)
+What **React** deliberately does not do, which is why it is called a library:
+ * routing(React Router, Next.js's Router)
+ * data fetching and caching(fetch, axios)
+ * building and bundline(Vite)
+ * server rendering and the app structure(Next.js)
+ 
 ## Props: 
          Values a parent passes down to its child component, gathered into one object..
 Q) Can a child change its own props?
