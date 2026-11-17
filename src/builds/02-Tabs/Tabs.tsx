@@ -35,16 +35,19 @@ const Tabs = ({itemsData, veryFirstActiveTab}: TabsProps) => {
 
   return( isListEmpty ? <p>No Tabs present</p> :
     <div className="tabs-container">
-      <div className="render-title">
+      <div className="render-title" role="tablist">
         {itemsData.map(item => {
+            const isActive = item.id === activeID
             return (
-            <button key={item.id} onClick={() => handleItemClick(item.id)}>
+            <button key={item.id} className={`tab-title${isActive? " tab-active" : ""}`} 
+             id={`tab-${item.id}`} role="tab" aria-selected={isActive} aria-controls={`panel-${item.id}`}
+             onClick={() => handleItemClick(item.id)}>
                 {item.title}
             </button>
             )
         })}
       </div>
-      <div className="render-content">
+      <div id={`panel-${activeID}`} className="render-content" role="tabpanel" aria-labelledby={`tab-${activeID}`}>
         {activeTab && <TabsItem content={activeTab.content}/>}
       </div>
     </div>
