@@ -26,3 +26,11 @@ classes in a `.module.css` file are local to that file. Browser have no idea wha
 **Who makes the names unique?** The **bundler** (Vite), not the browser.
 At build time Vite rewrites `.item` into a unique name (like `_item_x7f3a`)
 and gives JS a `styles` object mapping `item` → `_item_x7f3a`.
+
+- Rendering pipeline; paint → raster (Skia) → composite (Viz) → GPU
+- display: none vs visibility: hidden vs opacity: 0 (which stage)
+- transform/opacity for animation
+- DOM tree vs box tree; anonymous flex items
+- Inherited vs non-inherited CSS properties
+- Script tags only execute JS; type="module"; module graph; Vite + Oxc
+- HTML ids: unique per page, no spaces

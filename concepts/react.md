@@ -61,5 +61,19 @@ So an object/array created freshly during every render counts as "changed" every
 ## Why does React need a *key* on list items, and what makes a good key?
 -> **key** - uniquely identifies an item in the list (analogy: nameplate among several identical looking houses)
            - gives each item list a unique identity, so React can **match items between renders**
+     - **Keys tell React which children are "the same item" across renders**
 
+## Reconciliation:
+
+
+## Assumptions to make the search O(n):
+    - 1) Different element type produce different trees: Create a new fibre if conponent type have changed and
+      if a key isn't among the old siblings --> new fibre; if an old key is no longer there --> its fibre is destroyed.
+    
+- Reconciliation: type change = remount; keys among siblings; O(n³) → O(n)
+- key as a reset tool; keeping state alive with display: none
+- Props live on the fiber (owned by the parent)
+- Each render = a const snapshot; the setter never changes it ⭐
+- Lazy initializer (pass a function to useState)
+- useId (unique per component instance)
 

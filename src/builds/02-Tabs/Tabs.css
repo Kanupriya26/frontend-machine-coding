@@ -1,4 +1,5 @@
 .tabs-container{
+  background-color: bisque;
   display: flex;
   flex-direction: column;
 }
