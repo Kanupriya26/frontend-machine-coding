@@ -1,0 +1,22 @@
+.tabs-container{
+  background-color: bisque;
+  display: flex;
+  flex-direction: column;
+}
+
+.render-title{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.tab-title{
+  border: none;
+  color: darkslategray;
+  cursor: pointer;
+}
+.tab-active{
+  color: blueviolet;
+  background: none;
+  border-bottom: 2px solid blueviolet;
+}

@@ -1,0 +1,2 @@
+- role: tablist/tab/tabpanel; aria-selected; aria-controls/labelledby; aria-hidden
+- Focus: how the browser decides; .focus(); keyboard events
