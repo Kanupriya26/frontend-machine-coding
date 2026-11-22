@@ -1,20 +1,35 @@
-.parent-container{
-  padding: 0.5rem;
+h4 {
+  width: fit-content;
+  margin: 8px 0px;
+}
+.rating-container{
+  width: fit-content;
   display: flex;
   flex-direction: column;
+  gap: 4px;
 }
 
 .title{
   display: flex;
   flex-direction: row;
-  gap: 1rem;
+  gap: inherit;
+}
+
+.stars-list{
+  display: flex;
+  flex-direction: row;
 }
 
 .fill-in-star{
   color: green;
 }
 
-.render-star{
+.star-button{
   cursor: pointer;
   border: none;
+  background: none;
+}
+
+.text-to-render h4{
+  margin-inline: auto;
 }
