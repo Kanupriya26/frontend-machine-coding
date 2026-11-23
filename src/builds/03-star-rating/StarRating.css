@@ -1,7 +1,8 @@
-h4 {
+.rating-container h4{
   width: fit-content;
   margin: 8px 0px;
 }
+
 .rating-container{
   width: fit-content;
   display: flex;
@@ -24,12 +25,24 @@ h4 {
   color: green;
 }
 
-.star-button{
-  cursor: pointer;
-  border: none;
-  background: none;
+.rating-label{
+  font-weight: bold;
+  margin-inline: auto;
 }
 
-.text-to-render h4{
-  margin-inline: auto;
+.visually-hidden{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  margin: 0;
+}
+
+.stars-list label{
+  cursor: pointer;
+}
+
+.stars-list input[type="radio"]:focus-visible + label{
+  outline: 2px rgb(221, 42, 22) solid;
 }

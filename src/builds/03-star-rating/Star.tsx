@@ -1,8 +1,19 @@
-const Star = ({isFilled, id}: {isFilled: boolean, id: string}) => {
+import "./StarRating.css"
+
+interface StarProps{
+  groupName: string;
+  inputID: string;
+  label: string;
+  isFilled: boolean;
+  onChangingRating: () => void;
+}
+
+const Star = ({groupName, inputID, label, isFilled,  onChangingRating}: StarProps) => {
   return (
     <>
-      <input id={id} name="ratings" type="radio"/>
-      <label htmlFor={id}>
+      <input id={inputID} name={groupName} type="radio" className="visually-hidden" onChange={() => onChangingRating()}/>
+      <label htmlFor={inputID}>
+        <span className="visually-hidden">{label}</span>
         <svg 
           xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill={isFilled? "currentColor" : "none"}
           stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="fill-in-star">

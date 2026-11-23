@@ -1,5 +1,5 @@
 //import Accordion from './builds/01-accordion-tabs/Accordion'
-import Tabs, { type TabsItemData } from "./builds/02-tabs/Tabs"
+import { type TabsItemData } from "./builds/02-Tabs/Tabs"
 import './App.css'
 import StarRating from "./builds/03-star-rating/StarRating"
 
@@ -33,16 +33,7 @@ const travelTabItemsData: TabsItemData[] = [
 ]
 
 function App() {
-  return (
-    <StarRating />
-  )
+  return <StarRating />
 }
 
 export default App
-
-// return (
-//     <div className="container">
-//       <Tabs itemsData={tabsItemsData}/>
-//       <Tabs itemsData={travelTabItemsData}/>
-//     </div>
-//   )

@@ -1,19 +1,17 @@
-import {useState} from "react"
+import {useId, useState} from "react"
 import ratingIcon from "./icons/rating.svg"
 import Star from "./Star"
 import "./StarRating.css"
 
-const starToText = ["Far from great", "Not good", "Good", "Great", "Exceptional"]
+const RATINGS_LABELS = ["Far from great", "Not good", "Good", "Great", "Exceptional"]
 
 const StarRating = () => {
+  const instanceID = useId()
+
   const [savedRating, setSavedRating] = useState<number>(0)
   const [hoverRating, setHoverRating] = useState<number>(0)
 
-  const currentRating = hoverRating || savedRating 
-
-  const handleStarClick = (index: number) => setSavedRating(index + 1)
-  const handleHover = (index: number) => setHoverRating(index+1)
-  const handleHoverOut = () => setHoverRating(0)
+  const displayRating = hoverRating || savedRating 
 
   return (
    <div className="rating-container">
@@ -21,19 +19,18 @@ const StarRating = () => {
       <h4>RATINGS</h4>
       <img src={ratingIcon} alt=""/>
     </div>
-    <div className="stars-list">
-      {starToText.map((item: string, idx: number) =>  {
+    <div className="stars-list" >
+      {RATINGS_LABELS.map((item: string, idx: number) =>  {
         return (
-          <div key={item}>
-            <button className="star-button" 
-             onClick={() => handleStarClick(idx)} onMouseEnter={() => handleHover(idx)} onMouseLeave={handleHoverOut}>
-              <Star isFilled={idx < currentRating} id={item}/>
-            </button>
+          <div key={item} onMouseEnter={() => setHoverRating(idx+1)} onMouseLeave={() => setHoverRating(0)}>
+            <Star groupName={`${instanceID}-ratings`} 
+            inputID={`${instanceID}-${idx}`} label={item}
+            isFilled={idx < displayRating} onChangingRating={() => setSavedRating(idx+1)}/>
           </div>
         )
       })}
     </div>
-    <div className="text-to-render"><h4>{currentRating? starToText[currentRating-1] : null}</h4></div>
+    {displayRating? <p className="rating-label">{RATINGS_LABELS[displayRating-1]}</p> : null}
    </div>
   )
 }
