@@ -1,19 +1,12 @@
-.rating-container h4{
-  width: fit-content;
-  margin: 8px 0px;
-}
-
 .rating-container{
   width: fit-content;
   display: flex;
   flex-direction: column;
-  gap: 4px;
 }
 
 .title{
   display: flex;
-  flex-direction: row;
-  gap: inherit;
+  gap: 4px;
 }
 
 .stars-list{

@@ -15,11 +15,11 @@ const StarRating = () => {
 
   return (
    <div className="rating-container">
-    <div className="title">
-      <h4>RATINGS</h4>
-      <img src={ratingIcon} alt=""/>
-    </div>
-    <div className="stars-list" >
+    <fieldset className="stars-list">
+      <legend className="title">
+        RATINGS
+        <img src={ratingIcon} alt=""/>
+      </legend>
       {RATINGS_LABELS.map((item: string, idx: number) =>  {
         return (
           <div key={item} onMouseEnter={() => setHoverRating(idx+1)} onMouseLeave={() => setHoverRating(0)}>
@@ -29,7 +29,7 @@ const StarRating = () => {
           </div>
         )
       })}
-    </div>
+    </fieldset>
     {displayRating? <p className="rating-label">{RATINGS_LABELS[displayRating-1]}</p> : null}
    </div>
   )
