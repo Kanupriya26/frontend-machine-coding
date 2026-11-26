@@ -1,5 +1,8 @@
-.container{
-  display: flex;
-  flex-direction: column;
-  gap: 3em;
+.visually-hidden{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  margin: 0;
 }

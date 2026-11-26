@@ -1,7 +1,7 @@
 //import Accordion from './builds/01-accordion-tabs/Accordion'
-import { type TabsItemData } from "./builds/02-Tabs/Tabs"
-import './App.css'
+import { type TabsItemData } from "./builds/02-tabs/Tabs"
 import StarRating from "./builds/03-star-rating/StarRating"
+import './App.css'
 
 const accordionItemsData = [
   {id: "travel-01", title: "Where can I travel?", content: "Dreams knows no boundaries. Our agency makes sure that you experience the reason to be alive by taking you to domestic as well as international tours. Please look for the place you wish to travel on top."},
@@ -33,7 +33,12 @@ const travelTabItemsData: TabsItemData[] = [
 ]
 
 function App() {
-  return <StarRating />
+  return (
+    <>
+      <StarRating/>
+      <StarRating starColor="orange"/>
+    </>
+  )
 }
 
 export default App

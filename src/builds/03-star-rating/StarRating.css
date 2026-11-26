@@ -4,18 +4,14 @@
   flex-direction: column;
 }
 
-.title{
+.rating-caption{
   display: flex;
   gap: 4px;
 }
 
-.stars-list{
+.rating-stars{
   display: flex;
   flex-direction: row;
-}
-
-.fill-in-star{
-  color: green;
 }
 
 .rating-label{
@@ -23,19 +19,14 @@
   margin-inline: auto;
 }
 
-.visually-hidden{
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  margin: 0;
-}
-
-.stars-list label{
+.rating-stars label{
   cursor: pointer;
 }
 
-.stars-list input[type="radio"]:focus-visible + label{
+.rating-stars input[type="radio"]:focus-visible + label{
   outline: 2px rgb(221, 42, 22) solid;
+}
+
+.star-icon{
+  color: var(--rating-star-color, green)
 }
