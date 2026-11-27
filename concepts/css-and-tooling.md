@@ -39,3 +39,27 @@ and gives JS a `styles` object mapping `item` → `_item_x7f3a`.
   *It represents the computed value of an element's **color property***
   -reads the element's own color property: be it inherited or explicitly assigned.
    ( a value declared on the element itself always beats the inherited one)
+
+## `<label>`: 
+ *An HTML element that connects descriptive text to a input field(`<input>`)*
+- **Links to one input** through *htmlFor*(on the label) = *id*(on the input).
+Or wrap the input inside `<label>`, no id separately needed.
+- **Gives the input its accessible name**: all the text inside the label, joined.
+Images and SVGs add nothing unless they have text alternatives.
+- **Clicking the label acts like clicking the input**: it checks the radio and moves focus to it.
+(Build-03: That's why clicking a star selects the rating)
+- **Content Rules**: only inline content inside it, so span, not p
+
+
+## Pseudo classes *:focus* and *:focus-visible*
+- `:focus` matches whenever the element has focus, however it got there(mouse, keyboard or code)
+- `:focus-visible` matches when the browser decides the user *needs to see* where focus is.In practice, that's mostly *keyboard focus*(Tab, arrows).
+One exception: clicking into a text input also matches :focus-visible, because the user is about to type and needs to see where
+
+## Combinators ~ and +
+- Both select a sibling that comes after an element, with the same parent. The difference is how far after:
+**A + B (adjacent sibling)**: the B immediately after A, and only that one.
+**A ~ B (general sibling)**: every B that comes anywhere after A.
+Neither one can look **backwards** or **up** to a parent. + and ~ can't look backwards or up.
+Modern CSS has :has(), which can select a parent based on its children, 
+e.g. label:has(input:checked).
